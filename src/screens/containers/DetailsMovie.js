@@ -10,7 +10,7 @@ import { COLORS } from '../../settings/theme';
 import URL_MEDIA from '../../../url_media';
 import { actions } from '../../store';
 import { handleOpenLink } from '../../settings/utils';
-import { Loading, Fab } from '../components';
+import { Loading, Fab, ItemText } from '../components';
 
 const HEADER_MIN_HEIGHT = 90;
 const HEADER_MAX_HEIGHT = 300;
@@ -20,7 +20,7 @@ const DetailsMovie = ({ navigation, route, getMoviesDetails }) => {
     const [detailsMovie, setDetailsMovie] = useState(null);
 
     const scrollYAnimatedValue = new Animated.Value(0);
-    
+
     const headerHeight = scrollYAnimatedValue.interpolate({
         inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
         outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
@@ -179,40 +179,39 @@ const DetailsMovie = ({ navigation, route, getMoviesDetails }) => {
                                 opacity: HideOpacityHeader,
                                 maxWidth: wp(100),
                             }}>
-                            <Text style={{ fontWeight: 'bold', color: COLORS.TEXT_BLACK, fontSize: 20 }} numberOfLines={2}>{detailsMovie.title}</Text>
+                            <Text style={styles.titlepri} numberOfLines={2}>{detailsMovie.title}</Text>
                             {detailsMovie.tagline != '' && <Text style={{ fontWeight: '500', color: COLORS.TEXT_BLACK, fontSize: 16 }} numberOfLines={2}>{detailsMovie.tagline}</Text>}
                         </Animated.View>
 
 
                         <View style={{marginVertical: 10}}>
+                            
+                            <ItemText
+                                title={'Duración:'}
+                                description={`${detailsMovie.runtime} min`}
+                                />
 
-                            <View style={styles.contentDetailsText}>
-                                <Text style={styles.contentDetailsText_title}>{'Duración:'}</Text>
-                                <Text style={styles.contentDetailsText_description}>{detailsMovie.runtime} min</Text>
-                            </View>
-
-                            <View style={styles.contentDetailsText}>
-                                <Text style={styles.contentDetailsText_title}>{'Fecha de estreno:'}</Text>
-                                <Text style={styles.contentDetailsText_description}>{`${d.getDay()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`}</Text>
-                            </View>
-
-                            <View style={styles.contentDetailsText}>
-                                <Text style={styles.contentDetailsText_title}>{'Calificación:'}</Text>
-                                <Text style={styles.contentDetailsText_description}>{detailsMovie.vote_average}</Text>
-                            </View>
+                            <ItemText
+                                title={'Fecha de estreno:'}
+                                description={`${d.getDay()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`}
+                                />
+                            <ItemText
+                                title={'Calificación:'}
+                                description={`${detailsMovie.vote_average}`}
+                                />
 
                             {(genres != '') && (
-                                <View style={styles.contentDetailsText}>
-                                    <Text style={styles.contentDetailsText_title}>{'Géneros:'}</Text>
-                                    <Text style={styles.contentDetailsText_description}>{genres}.</Text>
-                                </View>
+                                <ItemText
+                                    title={'Géneros:'}
+                                    description={`${genres}`}
+                                    />
                             )}
 
                             {(detailsMovie.overview != '') && (
-                                <View style={styles.contentDetailsText}>
-                                    <Text style={styles.contentDetailsText_title}>{'Descripción:'}</Text>
-                                    <Text style={styles.contentDetailsText_description}>{detailsMovie.overview}</Text>
-                                </View>
+                                <ItemText
+                                    title={'Descripción:'}
+                                    description={`${detailsMovie.overview}`}
+                                    />
                             )}
 
                         </View>
@@ -247,18 +246,10 @@ const styles = StyleSheet.create({
         paddingTop: 0,
         opacity: 1,
     },
-    contentDetailsText: {
-        marginBottom: 4
-    },
-    contentDetailsText_title: { 
+    titlepri: {
         fontWeight: 'bold', 
         color: COLORS.TEXT_BLACK, 
-        fontSize: 16 
-    },
-    contentDetailsText_description: { 
-        fontWeight: '500', 
-        color: COLORS.TEXT_BLACK, 
-        fontSize: 16 
+        fontSize: 20
     }
 });
 
