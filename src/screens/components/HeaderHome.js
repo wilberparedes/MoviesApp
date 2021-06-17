@@ -5,16 +5,14 @@ import { COLORS } from '../../settings/theme';
 
 const HeaderHome = () => {
     return (
-        // <View style={{ paddingTop: getStatusBarHeight(), backgroundColor: Colors.primary }}>
-            <SafeAreaView style={[styles.statusBar]}>
-                <View style={styles.container}>
-                    {/* CENTER BUTTON */}
-                    <View style={[styles.content, {alignItems: 'center', justifyContent: 'center', position: 'relative'}]}>
-                        <Text style={styles.title}>Movies App</Text>
-                    </View>
+        <SafeAreaView style={[styles.statusBar]}>
+            <View style={styles.container}>
+                {/* CENTER BUTTON */}
+                <View style={[styles.content, {alignItems: 'center', justifyContent: 'center', position: 'relative'}]}>
+                    <Text style={styles.title}>Movies App</Text>
                 </View>
-            </SafeAreaView>
-        // </View>
+            </View>
+        </SafeAreaView>
     )
 }
 

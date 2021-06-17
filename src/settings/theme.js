@@ -5,10 +5,11 @@ export const COLORS = {
     ACCENT: 'rgba(0, 0, 0, 0.87)',
 
     BLACK: "#2e2d38",
+    YELLOW: '#FACE39',
 
     TEXT_BLACK: '#39393A',
-    TEXT_SEMIBLACK: '#4A4A4A',
-    TEXT_DANGER: '#D0021B',
+    TEXT_GRAY: '#7E7E7F',
+    GRAY: '#EFEFEF',
 
     BUTTON_PRIMARY: '#032541'
 };

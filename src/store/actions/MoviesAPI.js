@@ -1,18 +1,11 @@
-const VERSION = `/v1`;
-
+import URL from '../../../url_backend';
+const BASE_API = `${URL}`;
 import axios from "axios";
-import { headerAxios } from '../../settings/utils';
 
-export const getTree = () => async (dispatch, getState) => {
+export const getMovies = ({ page }) => async () => {
   try {
-    const { data } = await axios.get(`${url}${VERSION}/tree?filter=${fil}&all=${all}`, {
-      headers: headerAxios(token),
-    });
-    dispatch({
-      type: TREE_FETCH,
-      payload: data,
-    });
-    return true;
+    const { data } = await axios.get(`${BASE_API}/movie/now_playing?api_key=634b49e294bd1ff87914e7b9d014daed&language=es-CO&page=${page}`, {});
+    return data;
   } catch (error) {
     console.log(error)
     return false;
