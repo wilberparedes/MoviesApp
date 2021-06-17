@@ -9,7 +9,7 @@ import {
   Home,
   DetailsMovie
 } from '../screens';
-import LoadingComponent from '../screens/components/LoadingComponent';
+import { LoadingComponent } from '../screens/components/';
 
 const Stack = createStackNavigator();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';

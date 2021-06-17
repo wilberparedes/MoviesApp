@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, SafeAreaView, StyleSheet, Text } from 'react-native'
+import React from 'react';
+import { View, SafeAreaView, StyleSheet, Text } from 'react-native';
 import { COLORS } from '../../settings/theme';
 
 const HeaderHome = () => {

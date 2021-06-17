@@ -1,6 +1,6 @@
-import React from 'react'
-import { View, ActivityIndicator } from 'react-native'
-import { COLORS } from '../../settings/theme'
+import React from 'react';
+import { View, ActivityIndicator } from 'react-native';
+import { COLORS } from '../../settings/theme';
 
 import {
     widthPercentageToDP as wp,
