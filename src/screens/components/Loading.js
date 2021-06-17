@@ -4,7 +4,6 @@ import { COLORS } from '../../settings/theme'
 
 import {
     widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
 const Loading = () => {
