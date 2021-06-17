@@ -8,6 +8,7 @@ import {
 } from "react-native-responsive-screen";
 
 const Card = ({ image, title, date, average }) => {
+
     const monthNames = ["ene", "feb", "mar", "abr", "may", "jun","jul", "ago", "sep", "oct", "nov", "dec"];
     const d = new Date(date);
 
@@ -17,17 +18,16 @@ const Card = ({ image, title, date, average }) => {
             >
                 {(image) 
                 ? (
-                        <Image
-                            source={{uri: `https://image.tmdb.org/t/p/original${image}`}}
-                            style={styles.image}
-                            />
+                    <Image
+                        source={{uri: `https://image.tmdb.org/t/p/original${image}`}}
+                        style={styles.image}
+                        />
                 ) : (
-                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: COLORS.GRAY}}>
+                    <View style={styles.noimage}>
                         <Icon name="image" size={50} color={COLORS.BLACK} />
                         <Text style={styles.text}>{`Sin portada`}</Text>
                     </View>
-                )
-                }
+                )}
             <View style={styles.contentDetails}>
                 <Text style={styles.title}>{title}</Text>
                 <View style={styles.complement}>
@@ -81,6 +81,12 @@ const styles = StyleSheet.create({
     datestar:{
         flexDirection: 'row', 
         alignItems: 'center'
+    },
+    noimage: {
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        backgroundColor: COLORS.GRAY
     }
 })
 
