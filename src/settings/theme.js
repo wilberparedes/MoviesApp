@@ -1,10 +1,12 @@
 export const COLORS = {
     PRIMARY: '#032541',
+    PRIMARY_TRANSPARENT: 'rgba(3,37,65,.8)',
     PRIMARY_LIGHT: '#576D80',
     PRIMARY_DARK: '#010C15',
     ACCENT: 'rgba(0, 0, 0, 0.87)',
 
     BLACK: "#2e2d38",
+    BLACK_TRANSPARENT: 'rgba(0,0,0,.8)',
     YELLOW: '#FACE39',
 
     TEXT_BLACK: '#39393A',

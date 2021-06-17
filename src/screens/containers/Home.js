@@ -1,79 +1,64 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, StatusBar, FlatList, ActivityIndicator } from 'react-native'
-import HeaderHome from '../components/HeaderHome'
-import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { actions } from '../../store';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StatusBar, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
-import { COLORS } from '../../settings/theme';
-import Card from '../components/Card';
+import { actions } from '../../store';
+import { HeaderHome, Card, Loading } from '../components';
 
-const Home = ({ getMovies }) => {
+const Home = ({ getMovies, navigation }) => {
 
-    const [loading, setLoading] = useState(false)
-    const [loadingMore, setLoadingMore] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [loadingMore, setLoadingMore] = useState(false);
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
-    const [maxPage, setMaxPage] = useState(null)
-    const [isFetching, setIsFetching] = useState(false)
+    const [maxPage, setMaxPage] = useState(null);
+    const [isFetching, setIsFetching] = useState(false);
 
     useEffect(() => {
-        getDataMovies()
-    }, [])
+        getDataMovies();
+    }, []);
 
     const getDataMovies = async () => {
         if((maxPage && page < maxPage) || !maxPage){
             const response = await getMovies({ page });
             
-            setMaxPage(response.total_pages)
+            setMaxPage(response.total_pages);
             const oldData = data ? data.results : [];
             let newData;
             if(data && response.page > data.page){
                 const newResult = oldData.concat(response.results);
-                newData = { ...response, results: newResult}
+                newData = { ...response, results: newResult};
             }
             else 
                 newData = response;
-            setData(newData)
-            setLoading(false)
+            setData(newData);
+            setLoading(false);
         }
-    }
+    };
 
     const onRefresh = async () => {
         setData([]);
-        setPage(1)
-        setIsFetching(true)
+        setPage(1);
+        setIsFetching(true);
         await getDataMovies();
-        setIsFetching(false)
+        setIsFetching(false);
     }
 
     const handleLoadMore = () => {
         setLoadingMore(true);
-        setPage(prevPage => prevPage + 1 )
+        setPage(prevPage => prevPage + 1 );
         getDataMovies();
     };
 
-    const Loading = () => {
-        return(
-            <View
-                style={{
-                    position: 'relative',
-                    width: wp(100),
-                    paddingVertical: 10,
-                    marginVertical: 10,
-                }}
-            >
-                <ActivityIndicator animating size="large" color={COLORS.PRIMARY}/>
-            </View>
-        )
-    }
+    
     const Footer = () => {
         if (!loadingMore) return null;
         return <Loading />;
     };
+
+    const openDetailsItem = (data) => {
+        navigation.push('DetailsMovie', {...data});
+     }
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -105,6 +90,7 @@ const Home = ({ getMovies }) => {
                                 title={item.original_title}
                                 date={item.release_date}
                                 average={item.vote_average}
+                                onPress={() => openDetailsItem(item)}
                                 />
                         )}
                         ListEmptyComponent={<View style={{alignItems: 'center', justifyContent: 'center', padding: 16}}><Text style={{fontSize: 18}}>No se encontraron registros</Text></View>}

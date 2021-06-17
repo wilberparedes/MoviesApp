@@ -1,14 +1,12 @@
 import React from 'react'
 import { View, SafeAreaView, StyleSheet, Text } from 'react-native'
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { COLORS } from '../../settings/theme';
 
 const HeaderHome = () => {
     return (
         <SafeAreaView style={[styles.statusBar]}>
             <View style={styles.container}>
-                {/* CENTER BUTTON */}
-                <View style={[styles.content, {alignItems: 'center', justifyContent: 'center', position: 'relative'}]}>
+                <View style={styles.content}>
                     <Text style={styles.title}>Movies App</Text>
                 </View>
             </View>
@@ -41,6 +39,9 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        position: 'relative'
     },
     title: {
         textTransform: 'uppercase',

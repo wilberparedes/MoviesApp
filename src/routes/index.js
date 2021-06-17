@@ -6,7 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import {
   App1,
-  Home
+  Home,
+  DetailsMovie
 } from '../screens';
 import LoadingComponent from '../screens/components/LoadingComponent';
 
@@ -51,6 +52,7 @@ const AppStack = () => {
             >
             <Stack.Navigator  headerMode="none"> 
                 <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="DetailsMovie" component={DetailsMovie} />
                 <Stack.Screen name="App1" component={App1} />
             </Stack.Navigator>
         </NavigationContainer>

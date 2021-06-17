@@ -2,10 +2,9 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, ActivityIndicator, SafeAreaView } from 'react-native';
 import { COLORS } from '../../settings/theme';
 
-
 function LoadingComponent(){
     return(
-        <SafeAreaView style={[styles.safContainer, { backgroundColor: 'white' }]}>
+        <SafeAreaView style={styles.safContainer}>
             <View style={styles.container}>
                 <Image 
                     source={require('../../assets/logo.png')} 
@@ -19,7 +18,12 @@ function LoadingComponent(){
 }
 
 const styles = StyleSheet.create({
-    safContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+    safContainer: { 
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        backgroundColor: 'white'
+    },
     container: {
         flex: 1,
         alignItems: 'center',

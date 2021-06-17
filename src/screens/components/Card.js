@@ -1,25 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { COLORS } from '../../settings/theme';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import URL_MEDIA from '../../../url_media';
 
-const Card = ({ image, title, date, average }) => {
+const Card = ({ image, title, date, average, onPress }) => {
 
-    const monthNames = ["ene", "feb", "mar", "abr", "may", "jun","jul", "ago", "sep", "oct", "nov", "dec"];
+    const monthNames = ["ene", "feb", "mar", "abr", "may", "jun","jul", "ago", "sep", "oct", "nov", "dic"];
     const d = new Date(date);
 
     return (
-        <View   
+        <TouchableOpacity   
             style={styles.content}
+            onPress={onPress}
             >
                 {(image) 
                 ? (
                     <Image
-                        source={{uri: `https://image.tmdb.org/t/p/original${image}`}}
+                        source={{uri: `${URL_MEDIA}${image}`}}
                         style={styles.image}
                         />
                 ) : (
@@ -38,7 +40,7 @@ const Card = ({ image, title, date, average }) => {
                     </View>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     },
     contentDetails: { 
         position: 'absolute', 
-        backgroundColor: 'rgba(0,0,0,.8)', 
+        backgroundColor: COLORS.BLACK_TRANSPARENT, 
         bottom: 0, 
         width: '100%', 
         padding: 8 
